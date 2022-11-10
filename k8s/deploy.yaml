@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api
+spec:
+  selector:
+    matchLabels:
+      app: api
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      containers:
+      - name: api
+        image: eualex/node-k8s:v2
+        resources:
+          requests:
+            cpu: "0.3"
+            memory: 30Mi
+          limits:
+            cpu: "0.5"
+            memory: 128Mi
+        ports:
+        - containerPort: 3333
